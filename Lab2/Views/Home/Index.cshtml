@@ -1,0 +1,26 @@
+﻿@using Lab2.Models
+@model Lab2.ViewModels.HomeViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form method="post">
+    <input type="text" name="Name" asp-for="Name"/>
+    <input type="text" name="SecondName" asp-for="SecondName"/>
+    <input type="text" name="Email" asp-for="Email"/>
+    <button type="submit">Submit</button>
+</form>
+
+<div class="text-center">
+    @foreach (User user in Model.Users)
+    {
+        <div>@user.Name</div>
+        <div>@user.SecondName</div>
+        <div>@user.Email</div>
+        <form method="post" action="/delete">
+            <input type="hidden" name="Id" value="@user.Id"/>
+            <button type="submit">Delete</button>
+        </form>
+        <br/>
+    }
+</div>
